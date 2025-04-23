@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, field_validator
 from datetime import datetime
 from typing import Optional
 from enum import Enum
@@ -30,10 +30,11 @@ class UserInDB(UserBase):
     model_config = ConfigDict(from_attributes=True)  # Replace orm_mode
 
 class FoodCreate(BaseModel):
-    food_type: str
-    quantity: int
-    expiry_date: datetime
-
+    @field_validator('expiry_date')
+    def validate_expiry(cls, v):
+        if v < datetime.now():
+            raise ValueError("Expiry date must be in the future")
+        return v
 class FoodEntry(FoodCreate):
     id: int
     donor_id: int

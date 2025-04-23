@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, Enum
 from app.database import Base
 from app.utils.constants import UserRole
-
+# Fix: Add missing imports
+from sqlalchemy.orm import relationship  # Add this in both files
 
 class User(Base):
     __tablename__ = "users"

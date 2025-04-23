@@ -4,6 +4,7 @@ from app.database import get_db
 from app.models.user import User
 from app.schemas.schemas import UserInDB
 from app.utils.security import get_current_user
+from app.models.user import UserRole
 
 router = APIRouter()
 
