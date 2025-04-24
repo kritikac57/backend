@@ -4,6 +4,8 @@ from app.models.food import FoodEntry
 from app.schemas.schemas import FoodCreate
 from app.database import get_db
 from app.utils.security import get_current_user
+from app.models.user import User  # Add this import
+
 
 router = APIRouter()
 
